@@ -47,12 +47,12 @@ module VideoPlayer
     end
 
     def iframe_code(src)
-      %{<iframe src="#{src}"#{cssClass}#{sizesCode} frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>}
+      %{<iframe src="#{src}"#{@cssClass}#{@sizesCode} frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>}
     end
 
     def youtube_embed(video_id)
       src = "//www.youtube.com/embed/#{video_id}?autoplay=#{autoplay}&rel=0"
-      iframe_code(src)
+      iframe_code(src) 
     end
 
     def vimeo_embed(video_id)
