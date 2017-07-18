@@ -9,6 +9,7 @@ module VideoPlayer
     DefaultWidth = '420'
     DefaultHeight = '315'
     DefaultAutoPlay = true
+    DefaultCssClass = nil
 
     YouTubeRegex  = /\A(https?:\/\/)?(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?/i
     VimeoRegex    = /\Ahttps?:\/\/(www.)?vimeo\.com\/([A-Za-z0-9._%-]*)((\?|#)\S+)?/i
@@ -17,11 +18,13 @@ module VideoPlayer
 
     attr_accessor :url, :width, :height
 
-    def initialize(url, width = DefaultWidth, height = DefaultHeight, autoplay = DefaultAutoPlay)
+    def initialize(url, width = DefaultWidth, height = DefaultHeight, css_class = DefaultCssClass, autoplay = DefaultAutoPlay)
       @url = url
       @width = width
       @height = height
+      @cssClass = !css_class.nil? ? %{ class="#{css_class}" }: ""
       @autoplay = autoplay
+      @sizesCode = (@width!=0 && @height!=0) ? %{ width="#{width}" height="#{height}"} : ""
     end
 
     def embed_code
@@ -44,7 +47,7 @@ module VideoPlayer
     end
 
     def iframe_code(src)
-      %{<iframe src="#{src}" width="#{width}" height="#{height}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>}
+      %{<iframe src="#{src}"#{cssClass}#{sizesCode} frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>}
     end
 
     def youtube_embed(video_id)
