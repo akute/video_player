@@ -1,25 +1,22 @@
 # Video player for Youtube, Vimeo, İzlesene and  Wistia
 [![Gem Version](https://badge.fury.io/rb/video_player.svg)](http://badge.fury.io/rb/video_player)
 
+The gem is forked from https://github.com/tgezginis/video_player
 Create video player for Youtube, Vimeo, İzlesene and Wistia videos for Ruby.
-
 And it may support more video hoster with your [contributions](#contributing).
+Added support for responsive layouts.
 
 ## Installation
 
 Add it to your Gemfile:
 
 ```ruby
-gem 'video_player'
+gem 'video_player', :git => 'https://github.com/akute/video_player.git'
 ```
 
 and run on terminal:
 
     $ bundle
-
-or install the gem on terminal.
-
-    $ gem install video_player
 
 ## Parameters
 
@@ -41,12 +38,13 @@ or install the gem on terminal.
 >
 > https://<subdomain>.wistia.com/medias/9ub91enoph
 
-**width** *(default  = 420)*
+**width** - if not present, then *width* attribute won't be passed to iframe
 
-**height** *(default  = 315)*
+**height** -if not present, then *height* attribute won't be passed to iframe
 
 **autoplay** *(default  = true)* - works only on Youtube
 
+**css_class** *(default = nil)* - CSS class for the player iframe. May be used to create responsive iframe, for example: *embed-responsive-item* class if Bootstrap 3 is used.
 
 ## Usage
 
@@ -91,10 +89,9 @@ video = VideoPlayer::player("http://vimeo.com/101419884")
 == video
 ```
 
-
 <a name="contributing"></a>
 ## Contributing
-1. Fork it ( https://github.com/tgezginis/video_player/fork )
+1. Fork it ( https://github.com/akute/video_player/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Extend the specs, run with `rake`
 4. Commit your changes (`git commit -am 'Add some feature'`)
@@ -102,5 +99,6 @@ video = VideoPlayer::player("http://vimeo.com/101419884")
 6. Create a new Pull Request
 
 **Thanks**
+[tgezginis](https://github.com/tgezginis)
 [mikel](https://github.com/mikel)
 [foxgaocn](https://github.com/foxgaocn)
